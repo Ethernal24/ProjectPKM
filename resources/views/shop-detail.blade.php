@@ -5,7 +5,7 @@
         <div class="telkomsel-page d-flex position-relative mx-auto">
             <div class="rounded position-relative fruite-item border border-secondary bg-white shadow">
                 <div class="fruite-img">
-                    <img src="img/hero-img-2.png" class="img-fluid w-100 rounded-top" alt="">
+                    <img src="{{ $providers->provider_logo }}" class="img-fluid w-100 rounded-top" alt="">
                 </div>
             </div>
         </div>
@@ -26,32 +26,47 @@
                         <div class="col-lg-12">
                             <div class="tab-content mb-5">
                                 <div class="container bg-white py-4 rounded">
-                                    <ul class="row nominal-voucher d-flex w-100">
+                                    {{-- <ul class="row nominal-voucher d-flex w-100">
                                         <li class="btn text-dark align-items-center col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp10.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp10.000</button>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp15.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp15.000</button>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp20.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp20.000</button>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp25.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp25.000</button>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp50.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp50.000</button>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp100.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp100.000</button>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp200.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp200.000</span>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp500.000</a>
+                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp500.000</span>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
+                                    <div class="row nominal-voucher d-flex w-100">
+                                        @foreach ($nominal_pulsas as $nominal_pulsa)   
+                                            <div class="col-md-3 mb-4">
+                                            {{-- <div class="btn text-dark align-items-center col-sm rounded mx-4 my-4"> --}}
+                                                @if ($nominal_pulsa->status_tersedia == 0)
+                                                    <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}')" disabled>Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }} <i class='fa fa-times ms-1 text-danger'></i></button>
+                                                @else
+                                                    
+                                                <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}')">Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }}</button>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                    {{-- <input type="type" name="" id="nominal" readonly> --}}
     
                                 </div>
                                 <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
@@ -108,48 +123,64 @@
                             <span class="form-section-number">2</span>
                             <h4 class="nominal d-flex ">Masukkan Data</h4>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="container bg-white mb-4 rounded py-4">
-                                <h5>Nomer Telepon</h5>
-                                <input class="form-control" type="number" placeholder="Masukan Nomer Telepon">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="container bg-white mb-4 rounded py-4">
-                                <h5 class="mb-4">Email Penerima</h5>
-                                <input class="form-control" type="text" placeholder="Masukan Email Penerima">
-                            </div>
 
-                            <div class="container bg-white mb-4 rounded py-4">
-                                <h5 class="mb-4">Metode Pembayaran</h5>
-                                <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
-                                    <img class="qris" src="img\quick-response-code-indonesia-standard-qris-seeklogo-2 1.png" alt="">
-                                    <span>Rp 0</span>
-
+                        {{-- <form action="" method='post'> --}}
+                            <div class="col-lg-12">
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <h5>Pulsa Yang Dipilih</h5>
+                                    <input class="form-control" type="hidden" name="" id="nominal_real" value="0" readonly>
+                                    <input class="form-control" type="type" name="" id="nominal" readonly>
                                 </div>
-                                    
                             </div>
-
-                            <div class="container bg-white mb-4 rounded py-4">
-                                <h5 class="mb-4">Voucher</h5>
-                                <button class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
-                            </div>
-
-                            <div class="container bg-white mb-4 rounded py-4">
-                                <div class="justify-content-between d-flex w-100">
-                                    <h5 class="mb-4">Total </h5>
-                                    <span >Rp 0</span>
+                            <div class="col-lg-12">
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <h5>Nomer Telepon Penerima</h5>
+                                    <input class="form-control" type="number" placeholder="Masukan Nomer Telepon">
                                 </div>
-                                <a href="{{ ('/shop-detail/invoice') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
                             </div>
-                        </div>
+
+                            <div class="col-lg-12">
+                                {{-- <div class="container bg-white mb-4 rounded py-4">
+                                    <h5 class="mb-4">Email Penerima</h5>
+                                    <input class="form-control" type="text" placeholder="Masukan Email Penerima">
+                                </div> --}}
+
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <h5 class="mb-4">Metode Pembayaran</h5>
+                                    <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
+                                        <img class="qris" src="img\quick-response-code-indonesia-standard-qris-seeklogo-2 1.png" alt="">
+                                        <span id="total_pay">Rp.0 </span>
+
+                                    </div>   
+                                </div>
+
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <h5 class="mb-4">Voucher Yang Di Gunakan</h5>
+                                    <input class="form-control" type="hidden" id="nominal_disc_real" value="0" readonly>
+                                    <input class="form-control" type="type" id="nominal_disc" readonly>
+                                </div>
+
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <h5 class="mb-4">Voucher</h5>
+                                    <button class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
+                                </div>
+
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <div class="justify-content-between d-flex w-100">
+                                        <h5 class="mb-4">Total </h5>
+                                        <span id="total_pay_fix">Rp 0</span>
+                                    </div>
+                                    <a href="{{ ('/shop-detail/invoice') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
+                                </div>
+                            </div>
+                        {{-- </form> --}}
                     </div>
                 </div>
             </div>
             <h1 class="fw-bold mb-0">Other Product</h1>
             <div class="vesitable">
                 <div class="owl-carousel vegetable-carousel justify-content-center">
-                    <div class="border border-primary rounded position-relative vesitable-item">
+                    {{-- <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
                             <img src="img/xl.png" class="img-fluid w-100 rounded-top" alt="">
                         </div>
@@ -226,7 +257,40 @@
                         <div class="p-2 pb-0 rounded-bottom">
                             <h4 class="justify-content-center w-100 d-flex">Indosat</h4>
                         </div>
+                    </div> --}}
+
+                    @foreach ($providerz as $provi)
+                        <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="{{ $provi->provider_logo }}" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Pulsa</div>
+                            <div class="p-2 pb-0 rounded-bottom">
+                                <h4 class="justify-content-center w-100 d-flex">{{ $provi->provider_name }}</h4>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img">
+                            <img src="img/hero-img-1.png" class="img-fluid w-100 rounded-top" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">PDAM</div>
+                        <div class="p-2 pb-0 rounded-bottom">
+                            <h4 class="justify-content-center w-100 d-flex">PDAM Pascabayar</h4>
+                        </div>
                     </div>
+
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img">
+                            <img src="img/pln.png" class="img-fluid w-100 rounded-top" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">PLN</div>
+                        <div class="p-2 pb-0 rounded-bottom">
+                            <h4 class="justify-content-center w-100 d-flex">PLN Prabayar</h4>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -242,7 +306,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex justify-content-center">
-                    <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4">
+                    {{-- <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4">
                         <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
                             <img class="diskon" src="img/discount.png" alt="">
                             <span>Diskon 20 Ribu</span>
@@ -259,9 +323,60 @@
                             <img class="diskon" src="img/discount.png" alt="">
                             <span>Diskon 20 Ribu</span>
                         </button>
+                    </div> --}}
+                    <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4" data-bs-dismiss="modal">
+                        @foreach ($nominal_vouchers as $nominal_voucher)
+                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4" onclick="set_nominal_voucher('{{ $nominal_voucher->nominal_disc }}')">
+                            <img class="diskon" src="img/discount.png" alt="">
+                            <span>Diskon {{ $nominal_voucher->nominal_disc /1000 }} Ribu</span>
+                        </button>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </x-layout>
+
+
+<script>
+
+    function set_nominal(nominal){
+        $('#nominal').val("Rp " + rupiah(nominal));
+        $('#nominal_real').val(nominal);
+
+        set_total_pay();
+    }
+
+    function set_nominal_voucher(nominal_disc){
+        var nominal_real = $('#nominal_real').val();
+
+        if(parseInt(nominal_disc) > parseInt(nominal_real)){
+            iziToast.error({
+                position: 'topCenter',
+                title: 'GAGAL',
+                message: 'Nominal voucher tidak boleh lebih besar dari nominal pulsa'
+            });
+        }
+        else{
+            
+            $('#nominal_disc').val("Rp " + rupiah(nominal_disc));
+            $('#nominal_disc_real').val(nominal_disc);
+        
+            set_total_pay();
+
+        }
+    }
+    
+
+    function set_total_pay(){
+        var nominal_real = $('#nominal_real').val();
+        var nominal_disc_real = $('#nominal_disc_real').val();
+
+        var total_pay = parseInt(nominal_real) - parseInt(nominal_disc_real);
+
+        $('#total_pay').html("Rp " + rupiah(total_pay));
+        $('#total_pay_fix').html("Rp " + rupiah(total_pay));
+
+    }
+</script>

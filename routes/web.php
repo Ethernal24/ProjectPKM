@@ -19,6 +19,7 @@ Route::get("/", [HomeController::class,"index"]);
 
 Route::get("/contact", [ContactController::class,"index"]);
 Route::get("/shop-detail", [ShopDetailController::class,"index"]);
+Route::post("/shop-detail", [ShopDetailController::class, "store"]); 
 Route::get("/login", [LoginController::class,"index"]);
 Route::get("/register", [RegisterController::class,"index"])->name('index');
 // Route::get("/register", [RegisterController::class,"store"])->name('index.store');

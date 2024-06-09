@@ -27,6 +27,14 @@
 
         <!-- Template Stylesheet -->
         <link href="{!! URL::asset('css/style.css')!!}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <script>
+            function rupiah(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+        </script>
     </head>
     <body class="{{ request()->is('shop-detail') || ('user')  ? 'shop-detail' : '' }}">
         <x-navbar></x-navbar>
@@ -40,11 +48,21 @@
         <script src="{!! URL::asset('lib/waypoints/waypoints.min.js')!!}"></script>
         <script src="{!! URL::asset('lib/lightbox/js/lightbox.min.js')!!}"></script>
         <script src="{!! URL::asset('lib/owlcarousel/owl.carousel.min.js')!!}"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 
         <!-- Template Javascript -->
         <script src="{!! URL::asset('js/main.js')!!}"></script>
-        <script src="{!! URL::asset('js/nominalbutton.js')!!}"></script>
+        {{-- <script src="{!! URL::asset('js/nominalbutton.js')!!}"></script> --}}
         <x-footer></x-footer>
+
+        <script>
+            $(document).ready(function(){
+                $("[rel='tooltip']").tooltip();
+            });
+        </script>
     </body>
 </html>
     
