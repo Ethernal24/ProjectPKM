@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\HistoryController;
 use App\Http\Controllers\Frontend\InvoiceController;
 use App\Http\Controllers\Frontend\ShopPDAMController;
+use App\Http\Controllers\Frontend\ShopPLNController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -31,3 +32,4 @@ Route::get("/profile/history", [HistoryController::class,"index"]);
 Route::get("/shop-detail/invoice", [InvoiceController::class,"index"]);
 Route::get("/profile/history/invoice", [InvoiceController::class,"index"]);
 Route::get("/shop/pdam", [ShopPDAMController::class,"index"]);
+Route::get("/shop/pln", [ShopPLNController::class,"index"]);
