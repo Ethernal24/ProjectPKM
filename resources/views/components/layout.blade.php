@@ -55,7 +55,7 @@
 
         <!-- Template Javascript -->
         <script src="{!! URL::asset('js/main.js')!!}"></script>
-        {{-- <script src="{!! URL::asset('js/nominalbutton.js')!!}"></script> --}}
+        <script src="{!! URL::asset('js/datacheck.js')!!}"></script>
         <x-footer></x-footer>
 
         <script>

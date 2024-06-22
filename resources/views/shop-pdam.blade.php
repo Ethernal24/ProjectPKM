@@ -16,14 +16,22 @@
     <!-- Single Product Start -->
     <div class="container-fluid py-5 mt-5">
         <div class="container py-5">
-            <div class="row g-4 mb-5">
-                <div class="d-flex text-center">
+            <div class="container bg-white my-4 py-2 rounded shadow">
+                {{-- Check Data Menggunakan JS bernama datacheck  --}}
+                <form id="dataForm" class="input-group w-75 mx-auto d-flex py-2 my-4">
+                    <input type="text" id="dataInput" class="form-control p-3" placeholder="Enter data">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+
+                <div id="errorMessage" class="hidden">
+                    <p class="d-flex justify-content-center">Nomor tidak ada, masukkan nomer yang valid</p>
+                </div> 
+            
+                <div class="row g-4 mb-5 py-4 px-5 mx-4 my-4 hidden" id="dataDetail" >
                     <h4 class="nominal d-flex ">Data Anda</h4>
-                </div>
-                <div class="col-lg-12">
-                    <div class="tab-content mb-5">
-                        <div class="container bg-white py-4 rounded shadow">
-                            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tab-content mb-5">
+                            <div class="row ">
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">
                                     <span class="name">No. Pelanggan</span>
                                 </div>
@@ -60,51 +68,52 @@
                                     <img src="{!! URL::asset('/img/qr-code.png')!!}" alt="" class="qr">
                                 </div>
                             </div>    
-                        </div>
-                        {{-- <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                            <div class="d-flex">
-                                <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                <div class="">
-                                    <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                    <div class="d-flex justify-content-between">
-                                        <h5>Jason Smith</h5>
-                                        <div class="d-flex mb-3">
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star"></i>
+
+                            {{-- <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                                <div class="d-flex">
+                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div class="">
+                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Jason Smith</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
                                         </div>
+                                        <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
+                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                                     </div>
-                                    <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                        words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div class="">
+                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Sam Peters</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
+                                            words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                <div class="">
-                                    <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                    <div class="d-flex justify-content-between">
-                                        <h5>Sam Peters</h5>
-                                        <div class="d-flex mb-3">
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                        words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                </div>
-                            </div>
+                            <div class="tab-pane" id="nav-vision" role="tabpanel">
+                                <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
+                                    amet diam et eos labore. 3</p>
+                                <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
+                                    Clita erat ipsum et lorem et sit</p>
+                            </div> --}}
                         </div>
-                        <div class="tab-pane" id="nav-vision" role="tabpanel">
-                            <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                                amet diam et eos labore. 3</p>
-                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
-                                Clita erat ipsum et lorem et sit</p>
-                        </div> --}}
                     </div>
                 </div>
             </div>
