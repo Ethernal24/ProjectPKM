@@ -6,3 +6,6 @@ $ git config
 $ git branch
 $ git help
 $ alias graph="git log --all --decorate --oneline --graph"
+$ git fetch (mengambil data dari GitHub)
+$ git merge (remote/branch) 
+$ git checkout

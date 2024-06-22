@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\HistoryController;
 use App\Http\Controllers\Frontend\InvoiceController;
+use App\Http\Controllers\Frontend\ShopPDAMController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -29,3 +30,4 @@ Route::get("/profile/voucher", [CoupunController::class,"index"]);
 Route::get("/profile/history", [HistoryController::class,"index"]);
 Route::get("/shop-detail/invoice", [InvoiceController::class,"index"]);
 Route::get("/profile/history/invoice", [InvoiceController::class,"index"]);
+Route::get("/shop/pdam", [ShopPDAMController::class,"index"]);
