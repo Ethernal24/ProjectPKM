@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use illuminat\http\Request;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+ 
 class HomeController extends Controller
 {
     public function index(){
-        return view("home",['title' => 'Web Top up | Home']);
+
+        $data['title'] = 'Web Top up | Home';
+        $data['providers'] = DB::select('select * from m_provider');
+
+        return view("home",$data);
     }
 }
