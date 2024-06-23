@@ -14,3 +14,4 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
         errorMessage.classList.remove('hidden');
     }
 });
+
