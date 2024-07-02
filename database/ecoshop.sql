@@ -73,7 +73,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE IF NOT EXISTS `m_cust_pdam` (
   `cust_pdam_id` int NOT NULL AUTO_INCREMENT,
   `cust_pdam_no` int NOT NULL,
-  `gol_pdam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `cust_pdam_nama` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `cust_pdam_alamat` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`cust_pdam_id`)
@@ -88,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `m_nominal_pulsa` (
   PRIMARY KEY (`nominal_pulsa_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Dumping data for table ecoshop.m_nominal_pulsa: ~7 rows (approximately)
+-- Dumping data for table ecoshop.m_nominal_pulsa: ~6 rows (approximately)
 INSERT INTO `m_nominal_pulsa` (`nominal_pulsa_id`, `nominal`) VALUES
 	(1, 5000),
 	(2, 10000),
@@ -129,19 +128,20 @@ INSERT INTO `m_provider` (`provider_id`, `provider_name`, `provider_logo`) VALUE
 CREATE TABLE IF NOT EXISTS `m_pulsa` (
   `pulsa_id` int NOT NULL AUTO_INCREMENT,
   `provider_id` int NOT NULL,
-  `pulsa_status` int NOT NULL COMMENT '1-BelumTerpakai, 2-Booking, 3-UdahTerpakai',
+  `pulsa_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 kepkaai 2 booking 3 kepkae',
   `nominal_pulsa_id` int DEFAULT NULL,
+  `pulsa_buy_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`pulsa_id`) USING BTREE,
   KEY `id_provider` (`provider_id`),
   KEY `nominal_pulsa_id` (`nominal_pulsa_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecoshop.m_pulsa: ~4 rows (approximately)
-INSERT INTO `m_pulsa` (`pulsa_id`, `provider_id`, `pulsa_status`, `nominal_pulsa_id`) VALUES
-	(1, 2, 1, 1),
-	(2, 1, 1, 2),
-	(3, 1, 1, 3),
-	(4, 1, 1, 4);
+INSERT INTO `m_pulsa` (`pulsa_id`, `provider_id`, `pulsa_status`, `nominal_pulsa_id`, `pulsa_buy_at`) VALUES
+	(1, 2, 0, 1, NULL),
+	(2, 1, 1, 3, '2024-07-02 09:35:16'),
+	(3, 1, 1, 2, '2024-07-02 08:58:18'),
+	(4, 1, 1, 4, NULL);
 
 -- Dumping structure for table ecoshop.m_token_pln
 CREATE TABLE IF NOT EXISTS `m_token_pln` (
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `m_token_pln` (
   PRIMARY KEY (`token_pln_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table ecoshop.m_token_pln: ~1 rows (approximately)
+-- Dumping data for table ecoshop.m_token_pln: ~0 rows (approximately)
 INSERT INTO `m_token_pln` (`token_pln_id`, `token_pln_no`, `token_pln_nominal`, `token_pln_kode`, `token_pln_status`) VALUES
 	(1, 111222, 10000, 12345678, 1);
 
@@ -169,9 +169,9 @@ CREATE TABLE IF NOT EXISTS `m_voucher` (
 
 -- Dumping data for table ecoshop.m_voucher: ~3 rows (approximately)
 INSERT INTO `m_voucher` (`voucher_id`, `nominal_voucher_id`, `user_id`, `is_redeemed`, `redeemed_at`) VALUES
-	(1, 1, 1, 1, '2024-06-28 20:18:31'),
-	(2, 2, 1, 1, '2024-06-28 13:09:21'),
-	(3, 1, 1, 1, '2024-06-28 20:56:29');
+	(1, 1, 1, 1, '2024-07-01 18:48:08'),
+	(2, 2, 1, 0, '2024-07-02 08:58:18'),
+	(3, 1, 1, 0, '2024-07-02 09:35:15');
 
 -- Dumping structure for table ecoshop.password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
@@ -196,14 +196,10 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table ecoshop.sessions: ~6 rows (approximately)
+-- Dumping data for table ecoshop.sessions: ~7 rows (approximately)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('2sJcrdiCcwZoR7wFTwKLyDj4qwdmaLteR3fSwtwa', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiV0pCbVdla083T1AxNUdtSVBVN1R5MVdNMUtOeEJMN0UzNlZQU2NlVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wLWRldGFpbD9wcm92aWRlcl9pZD0xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1719566700),
-	('E88FJRIrkBtny4FdFcuXx3drX3sODyWwKw7ix7Dd', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWWNFQUdSQ2FhNGNCV1BEeTkyYmVXcXZiTWRmVnc1ZGtleGQxTUU1RiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjA6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wLWRldGFpbC9pbnZvaWNlP2ludm9pY2VfaWQ9NyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1719605771),
-	('klyQ5uZDbbHTbO8LpeaelhxjYoiURZfAikFhlxRW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid3M4ZXJ6bEdOQWl4QUdva2NJbXNWcHJncm5MWTNTWUpBS3FrUEhVbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjA6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wLWRldGFpbC9pbnZvaWNlP2ludm9pY2VfaWQ9OSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1719633490),
-	('RK0Em1LVgzecIj4hyARGzt4DM6wX7JaTIPUEk8hS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTVF0bDNVblJ6SXVRRGFmaWl5Unh1bnFFUVQ5c0RJRnlOMkJlSzFrMyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wLWRldGFpbD9wcm92aWRlcl9pZD0xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1719556735),
-	('tgVgwHuYk3K4TuN9IcNxpU5M4dAQBW0HbyKYxm6Q', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNDQzcW9IMnZQN2Y4MmlBMnB4VERIREM1V3MzM0VMcjBpb0JVWTVjaiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wLWRldGFpbC9pbnZvaWNlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1719553970),
-	('xjJVdCilUgwAs4k12cgjK3CfLw20sCZkYamuVUzr', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNjRpdXFHTW5lRGhGc294QTIyQ1ByVmtvNGFObFlzMjNWc2cxc2RNcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wLWRldGFpbD9wcm92aWRlcl9pZD0xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1719556608);
+	('a7HmNXnisHZcmzUWULqJiwxu1h6Y8n81qkRsxgFO', NULL, '192.168.1.64', 'Mozilla/5.0 (Linux; U; Android 13; en-us; POCO M5s Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/100.0.4896.127 Mobile Safari/537.36 XiaoMi/MiuiBrowser/13.25.2.2-gn', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiazk1RlQyWElERm5KVHVXdnZNR1RGRENFWnV3R2ZSRXB3WmFtVkswTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly8xOTIuMTY4LjEuMjUwL1Byb2plY3RQS01fcmVhbC9wdWJsaWMvYXBpZG9hbmc/aW52b2ljZV9pZD0xMSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1719937486),
+	('y7uq7AQ3RNFePhjA4alVKMuh0KO57ikHPIuEIL0Y', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQk04SE9nQVp2RktPaUdrRWF4TDV5M1FrUFNkMkVWanF6VERJbVJKeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9wcm9qZWN0cGttX3JlYWwudGVzdC9zaG9wL3BsbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1719943481);
 
 -- Dumping structure for table ecoshop.t_invoice
 CREATE TABLE IF NOT EXISTS `t_invoice` (
@@ -211,14 +207,14 @@ CREATE TABLE IF NOT EXISTS `t_invoice` (
   `voucher_id` int DEFAULT NULL,
   `invoice_no` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'str random (10)',
   `invoice_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = token, 2 = pulsA, 3 = pdam',
-  `nomor_telp` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nomor_telp` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `invoice_total` int NOT NULL DEFAULT '0',
-  `invoice_status` int NOT NULL DEFAULT '1' COMMENT '1-BelumSelesai, 2-checkout, belum bayar, 3 = lunas',
+  `invoice_status` int NOT NULL DEFAULT '1' COMMENT '1 baru, 2 lunas, 3 cancel',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`invoice_id`),
   KEY `voucher_id` (`voucher_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecoshop.t_invoice: ~5 rows (approximately)
 INSERT INTO `t_invoice` (`invoice_id`, `voucher_id`, `invoice_no`, `invoice_type`, `nomor_telp`, `invoice_total`, `invoice_status`, `updated_at`, `created_at`) VALUES
@@ -226,7 +222,10 @@ INSERT INTO `t_invoice` (`invoice_id`, `voucher_id`, `invoice_no`, `invoice_type
 	(6, 2, '8my2izGS4i', 2, '', 8000, 1, '2024-06-28 20:09:21', '2024-06-28 20:09:21'),
 	(7, 3, 'B8qqAuJTw9', 2, '', 0, 1, '2024-06-28 20:12:41', '2024-06-28 20:12:41'),
 	(8, 1, 'nUpQdCbjQz', 2, '08976868', 5000, 1, '2024-06-29 03:18:31', '2024-06-29 03:18:31'),
-	(9, 3, 'BKyEiNEweW', 2, '', 10000, 1, '2024-06-29 03:56:29', '2024-06-29 03:56:29');
+	(9, 3, 'BKyEiNEweW', 2, '', 10000, 1, '2024-06-29 03:56:29', '2024-06-29 03:56:29'),
+	(10, 1, 'ylJVhhyGSn', 2, '7676766', 5000, 1, '2024-07-02 01:48:08', '2024-07-02 01:48:08'),
+	(11, 2, 'XS1kkPOIwL', 2, '89797779', 3000, 2, '2024-07-02 15:58:18', '2024-07-02 15:58:18'),
+	(12, 3, '4Wy8cWq5a4', 2, '09876454545', 10000, 1, '2024-07-02 16:35:15', '2024-07-02 16:35:15');
 
 -- Dumping structure for table ecoshop.t_invoice_detail
 CREATE TABLE IF NOT EXISTS `t_invoice_detail` (
@@ -241,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `t_invoice_detail` (
   KEY `tagihan_pdam_id` (`tagihan_pdam_id`),
   KEY `pulsa_id` (`pulsa_id`),
   KEY `invoice_id` (`invoice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecoshop.t_invoice_detail: ~5 rows (approximately)
 INSERT INTO `t_invoice_detail` (`invoice_detail_id`, `invoice_id`, `token_pln_id`, `tagihan_pdam_id`, `pulsa_id`, `created_at`) VALUES
@@ -249,7 +248,10 @@ INSERT INTO `t_invoice_detail` (`invoice_detail_id`, `invoice_id`, `token_pln_id
 	(2, 6, NULL, NULL, 3, '2024-06-28 20:09:21'),
 	(3, 7, NULL, NULL, 1, '2024-06-28 20:12:41'),
 	(4, 8, NULL, NULL, 2, '2024-06-29 03:18:31'),
-	(5, 9, NULL, NULL, 3, '2024-06-29 03:56:29');
+	(5, 9, NULL, NULL, 3, '2024-06-29 03:56:29'),
+	(6, 10, NULL, NULL, 2, '2024-07-02 01:48:08'),
+	(7, 11, NULL, NULL, 3, '2024-07-02 15:58:18'),
+	(8, 12, NULL, NULL, 2, '2024-07-02 16:35:15');
 
 -- Dumping structure for table ecoshop.t_tagihan_pdam
 CREATE TABLE IF NOT EXISTS `t_tagihan_pdam` (
@@ -273,7 +275,7 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table ecoshop.t_user: ~1 rows (approximately)
+-- Dumping data for table ecoshop.t_user: ~0 rows (approximately)
 INSERT INTO `t_user` (`user_id`, `user_username`, `user_password`) VALUES
 	(1, 'ntin', 'admin');
 
