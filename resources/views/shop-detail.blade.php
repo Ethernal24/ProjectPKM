@@ -53,15 +53,24 @@
                                         </li>
                                     </ul> --}}
                                     <div class="row nominal-voucher d-flex w-100">
+                                        {{-- @dd($nominal_pulsas) --}}
                                         @foreach ($nominal_pulsas as $nominal_pulsa)   
                                             <div class="col-md-3 mb-4">
                                             {{-- <div class="btn text-dark align-items-center col-sm rounded mx-4 my-4"> --}}
                                                 @if ($nominal_pulsa->status_tersedia == 0)
-                                                    <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}')" disabled>Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }} <i class='fa fa-times ms-1 text-danger'></i></button>
-                                                @else
-                                                    
-                                                <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}')">Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }}</button>
+                                                    <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}', '{{ $nominal_pulsa->nominal_pulsa_id }}')" disabled>Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }} <i class='fa fa-times ms-1 text-danger'></i></button>
+                                                @else 
+                                                {{-- <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}','{{ $nominal_pulsa->nominal_pulsa_id }}')">Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }}</button> --}}
+                                                <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}','{{ $nominal_pulsa->nominal_pulsa_id }}')">Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }}</button>
                                                 @endif
+{{-- 
+                                                @if ($invoice->type_invoice == 1)
+                                                    PULSA GES
+                                                @elseif($invoice->type_invoice == 2)
+                                                    PDAM GES
+                                                @else   
+                                                    PLN GAIS
+                                                @endif --}}
                                             </div>
                                         @endforeach
                                     </div>
@@ -124,27 +133,28 @@
                             <h4 class="nominal d-flex ">Masukkan Data</h4>
                         </div>
 
-                        {{-- <form action="" method='post'> --}}
+                        <form action="{{ route('shop-detail.invoice') }}" method="post">
+                            <input type="hidden" name="invoice_type" value="2">
+                            <input type="hidden" name="nominal_pulsa_id" id="hidden_nominal_pulsa_id" value="0">
+                            <input type="hidden" name="provider_id" id="hidden_provider_id" value="{{ $providers->provider_id }}">
+
+                            @csrf
                             <div class="col-lg-12">
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <h5>Pulsa Yang Dipilih</h5>
+                                    <input class="form-control" type="hidden" id="voucher_id_real" name="voucher_id" value="0">
                                     <input class="form-control" type="hidden" name="" id="nominal_real" value="0" readonly>
-                                    <input class="form-control" type="type" name="" id="nominal" readonly>
+                                    <input class="form-control" type="type" id="nominal" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <h5>Nomer Telepon Penerima</h5>
-                                    <input class="form-control" type="number" placeholder="Masukan Nomer Telepon">
+                                    <input class="form-control" type="number" name="nomor_telp" placeholder="Masukan Nomer Telepon">
                                 </div>
                             </div>
 
                             <div class="col-lg-12">
-                                {{-- <div class="container bg-white mb-4 rounded py-4">
-                                    <h5 class="mb-4">Email Penerima</h5>
-                                    <input class="form-control" type="text" placeholder="Masukan Email Penerima">
-                                </div> --}}
-
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <h5 class="mb-4">Metode Pembayaran</h5>
                                     <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
@@ -153,7 +163,8 @@
 
                                     </div>   
                                 </div>
-
+                                
+                                {{-- @foreach ($nominal_vouchers as $nominal_voucher) --}}
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <h5 class="mb-4">Voucher Yang Di Gunakan</h5>
                                     <input class="form-control" type="hidden" id="nominal_disc_real" value="0" readonly>
@@ -162,18 +173,19 @@
 
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <h5 class="mb-4">Voucher</h5>
-                                    <button class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
+                                    <button type="button" class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
                                 </div>
+                                {{-- @endforeach --}}
 
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <div class="justify-content-between d-flex w-100">
                                         <h5 class="mb-4">Total </h5>
                                         <span id="total_pay_fix">Rp 0</span>
                                     </div>
-                                    <a href="{{ ('/shop-detail/invoice') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
+                                    <button type="submit" href="{{ ('/shop-detail/invoice') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</button>
                                 </div>
                             </div>
-                        {{-- </form> --}}
+                        </form>
                     </div>
                 </div>
             </div>
@@ -326,7 +338,7 @@
                     </div> --}}
                     <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4" data-bs-dismiss="modal">
                         @foreach ($nominal_vouchers as $nominal_voucher)
-                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4" onclick="set_nominal_voucher('{{ $nominal_voucher->nominal_disc }}')">
+                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4" onclick="set_nominal_voucher('{{ $nominal_voucher->nominal_disc }}' ,'{{ $nominal_voucher->voucher_id }}')">
                             <img class="diskon" src="img/discount.png" alt="">
                             <span>Diskon {{ $nominal_voucher->nominal_disc /1000 }} Ribu</span>
                         </button>
@@ -338,17 +350,17 @@
     </div>
 </x-layout>
 
-
 <script>
-
-    function set_nominal(nominal){
+    function set_nominal(nominal, nominal_pulsa_id){
         $('#nominal').val("Rp " + rupiah(nominal));
         $('#nominal_real').val(nominal);
-
         set_total_pay();
+
+        // setting id juga
+        $("#hidden_nominal_pulsa_id").val(nominal_pulsa_id);
     }
 
-    function set_nominal_voucher(nominal_disc){
+    function set_nominal_voucher(nominal_disc, voucher_id){
         var nominal_real = $('#nominal_real').val();
 
         if(parseInt(nominal_disc) > parseInt(nominal_real)){
@@ -358,25 +370,26 @@
                 message: 'Nominal voucher tidak boleh lebih besar dari nominal pulsa'
             });
         }
-        else{
-            
+        else {
             $('#nominal_disc').val("Rp " + rupiah(nominal_disc));
             $('#nominal_disc_real').val(nominal_disc);
-        
+            $('#voucher_id_real').val(voucher_id);
             set_total_pay();
-
         }
     }
-    
 
     function set_total_pay(){
         var nominal_real = $('#nominal_real').val();
         var nominal_disc_real = $('#nominal_disc_real').val();
-
         var total_pay = parseInt(nominal_real) - parseInt(nominal_disc_real);
-
         $('#total_pay').html("Rp " + rupiah(total_pay));
         $('#total_pay_fix').html("Rp " + rupiah(total_pay));
+    }
 
+    function rupiah(angka){
+        var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+        return ribuan;
     }
 </script>

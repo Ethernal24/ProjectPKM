@@ -116,8 +116,8 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="container bg-white mb-4 rounded py-4">
-                                <h5 class="mb-4">Email Penerima</h5>
-                                <input class="form-control" type="text" placeholder="Masukan Email Penerima">
+                                <h5 class="mb-4">Token PLN</h5>
+                                <input class="form-control" type="text" placeholder="Berapa Ribu">
                             </div>
 
                             <div class="container bg-white mb-4 rounded py-4">

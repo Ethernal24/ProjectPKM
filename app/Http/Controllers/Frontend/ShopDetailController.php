@@ -16,15 +16,26 @@ class ShopDetailController extends Controller
         }
        
         $nominal_pulsas = DB::select('select * from m_nominal_pulsa');
-        $stok_pulsa = DB::select('select * from m_pulsa');
-        $stok_pulsa = DB::select('select * from m_pulsa');
-        $nominal_vouchers = DB::select('select * from m_nominal_voucher');
+        // $nominal_pulsas = DB::select('select * from m_pulsa as a left join m_nominal_pulsa AS b on a.nominal_pulsa_id = b.nominal_pulsa_id where a.provider_id = ? and (a.pulsa_status = 0 OR a.pulsa_status = 1)', [1]);
+        // dd($nominal_pulsas);
+        $stok_pulsa = DB::select('select * from m_pulsa where provider_id = ?', [$request->provider_id]);
+        // $nominal_vouchers = DB::select('select * from m_voucher where user_id = ?', [auth()->user()->id]);
+        $nominal_vouchers = DB::select('select * from m_voucher as a left join m_nominal_voucher AS b on a.nominal_voucher_id = b.nominal_voucher_id where a.user_id = ? and a.is_redeemed = ?', [1, 0]);
         $providersss = DB::select('select * from m_provider');
+        
 
 
         // loop untuk tahu statusnya, jika ada dan statusnya siji, maka bisa dibilang tersedia (ada stok), else ya habis brow
+        
+        // foreach($nominal_pulsas as $i => $nominal_pulsa){
+        //     if(collect($stok_pulsa)->where('nominal_pulsa_id', $nominal_pulsa->nominal_pulsa_id)->where('pulsa_status','=', 1)->count() > 0){
+        //         $nominal_pulsas[$i]->status_tersedia = 1;
+        //     }else{
+        //         $nominal_pulsas[$i]->status_tersedia = 0;
+        //     }
+        // }
         foreach($nominal_pulsas as $i => $nominal_pulsa){
-            if(collect($stok_pulsa)->where('nominal_pulsa_id', $nominal_pulsa->nominal_pulsa_id)->where('pulsa_status','=', 1)->count() > 0){
+            if(collect($stok_pulsa)->where('nominal_pulsa_id', $nominal_pulsa->nominal_pulsa_id)->where('pulsa_status','=', 0)->count() > 0){
                 $nominal_pulsas[$i]->status_tersedia = 1;
             }else{
                 $nominal_pulsas[$i]->status_tersedia = 0;
@@ -39,8 +50,10 @@ class ShopDetailController extends Controller
         $data['providerz'] = $providersss;
         $data['nominal_pulsas'] = $nominal_pulsas;
         $data['nominal_vouchers'] = $nominal_vouchers;
+       
 
         return view("shop-detail",$data);
+        
     }
 
     public function index_pln(Request $request){

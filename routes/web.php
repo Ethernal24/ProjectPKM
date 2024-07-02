@@ -13,9 +13,9 @@ use App\Http\Controllers\Frontend\InvoiceController;
 use App\Http\Controllers\Frontend\ShopPDAMController;
 use App\Http\Controllers\Frontend\ShopPLNController;
 
-// Route::get('/', function () {
+// Route::get('/test', function () {
 //     return view('welcome');
-// });
+// })->name('test.route');;
 
 Route::get("/", [HomeController::class,"index"]);
 
@@ -29,7 +29,9 @@ Route::get("/profile", [UserController::class,"index"]);
 Route::get("/profile/setting", [UserController::class,"index"]);
 Route::get("/profile/voucher", [CoupunController::class,"index"]);
 Route::get("/profile/history", [HistoryController::class,"index"]);
-Route::get("/shop-detail/invoice", [InvoiceController::class,"index"]);
+Route::get("/shop-detail/invoice", [InvoiceController::class,"detail"]);
 Route::get("/profile/history/invoice", [InvoiceController::class,"index"]);
 Route::get("/shop/pdam", [ShopPDAMController::class,"index"]);
 Route::get("/shop/pln", [ShopPLNController::class,"index"]);
+
+Route::post("/shop-detail/invoice", [InvoiceController::class,"submit"])->name('shop-detail.invoice');

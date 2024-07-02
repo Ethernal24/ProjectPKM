@@ -6,11 +6,11 @@
                 <h5 class="title-invoice py-3 my-2">INVOICE</h5>
                 <div class="row">
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
-                        <span class="name">Transaction ID</span>
+                        <span class="name">Kode Transaksi</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">12345</span>
+                        <span class="name">{{ $invoice->invoice_no }}</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                        <span class="name">24 Juni 2024</span>
+                        <span class="name">{{ \Carbon\Carbon::parse($invoice->created_at)->format('d-m-Y') }}</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
@@ -35,14 +35,14 @@
         <div class="container bg-white py-1 my-5 invoice">
             <div class="typography-invoice py-1 my-2">
                 <h5 class="title-invoice py-3 my-2">Detail Product</h5>
-                <img class="avatar" src="{!! URL::asset('/img/three.png')!!}" alt="">
+                <img class="avatar" src="{!! URL::asset($invoice->provider_logo)!!}" alt="">
                 <div class="row">
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
                         <span class="name">Product</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Pulsa Three</span>
+                        <span class="name">Pulsa : {{ $invoice->provider_name }}</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                        <span class="name">0895176628</span>
+                        <span class="name">{{ $invoice->nomor_telp }}</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Rp 20.000</span>
+                        <span class="name">Rp {{ number_format($invoice->nominal_pulsa,0,',','.') }}</span>
                     </div>
 
                     {{-- Kalau Top up PLN kode token baru tergenerate kalau sudah sukses transaksi --}}
@@ -70,10 +70,10 @@
                         <span class="name fw-bold">2d41zd2</span>
                     </div>
                     {{-- end of Top up PLN --}}
-
                 </div>
             </div>
         </div>
+
         <div class="container bg-white py-1 my-5 invoice">
             <div class="typography-invoice py-1 my-2">
                 <h5 class="title-invoice py-3 my-2">Payment Detail</h5>
@@ -95,17 +95,17 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
-                        <span class="name">Status Transaction</span>
+                        <span class="name">Pesanan Oleh</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Pending</span>
+                        <span class="name">Nama Cust</span>
                     </div>
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
                         <span class="name fw-bold">Total Payment</span>
                     </div>
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name fw-bold">Rp20.000</span>
+                        <span class="name fw-bold">Rp {{ number_format($invoice->invoice_total,0,',','.') }}</span>
                     </div>
                 </div>
             </div>

@@ -5,11 +5,11 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-md-12 col-lg-7">
-                    <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
-                    <h1 class="mb-5 display-3 text-third">Organic Veggies & Fruits Foods</h1>
+                    <h4 class="mb-3 text-secondary">ECOSHOP</h4>
+                    <h1 class="mb-5 display-3 text-third">Transaksi Praktis dengan Voucher Diskon</h1>
                     <div class="position-relative mx-auto">
                         <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="text" placeholder="Search">
-                        <button type="submit" class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style="top: 0; right: 25%;">Submit Now</button>
+                        <button type="submit" class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style="top: 0; right: 25%;">Search</button>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-5">
@@ -177,7 +177,8 @@
                                                 </a>
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">PLN</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <div class="p
+                                            -4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>PLN Prabayar</h4>
                                             </div>
                                         </div>
