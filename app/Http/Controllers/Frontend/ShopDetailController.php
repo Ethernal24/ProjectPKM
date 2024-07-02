@@ -35,7 +35,7 @@ class ShopDetailController extends Controller
         //     }
         // }
         foreach($nominal_pulsas as $i => $nominal_pulsa){
-            if(collect($stok_pulsa)->where('nominal_pulsa_id', $nominal_pulsa->nominal_pulsa_id)->where('pulsa_status','=', 0)->count() > 0){
+            if(collect($stok_pulsa)->where('nominal_pulsa_id', $nominal_pulsa->nominal_pulsa_id)->where('provider_id', $request->provider_id)->where('pulsa_status','=', 0)->count() > 0){
                 $nominal_pulsas[$i]->status_tersedia = 1;
             }else{
                 $nominal_pulsas[$i]->status_tersedia = 0;

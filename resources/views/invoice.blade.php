@@ -83,7 +83,17 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Success</span>
+                        <span class="name">
+                            @php
+                                $status_desc = "Baru";
+                                if($invoice->invoice_status == 2){
+                                    $status_desc = "Lunas";
+                                }else if($invoice->invoice_status == 3){
+                                    $status_desc = "Cancel";
+                                }
+                            @endphp
+                            {{ $status_desc }}
+                        </span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    

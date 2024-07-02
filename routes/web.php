@@ -2,20 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\ContactController;
-use App\Http\Controllers\Frontend\CoupunController;
-use App\Http\Controllers\Frontend\ShopDetailController;
-use App\Http\Controllers\Frontend\LoginController;
-use App\Http\Controllers\Frontend\RegisterController;
+use App\Http\Controllers\Frontend\QrisController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Frontend\CoupunController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HistoryController;
 use App\Http\Controllers\Frontend\InvoiceController;
-use App\Http\Controllers\Frontend\ShopPDAMController;
 use App\Http\Controllers\Frontend\ShopPLNController;
+use App\Http\Controllers\Frontend\RegisterController;
+use App\Http\Controllers\Frontend\ShopPDAMController;
+use App\Http\Controllers\Frontend\ShopDetailController;
 
 // Route::get('/test', function () {
 //     return view('welcome');
 // })->name('test.route');;
+
+
+// khusus untuk diakses qris
+Route::get("/apidoang", [QrisController::class,"lunasin_dong"]);
+// end
 
 Route::get("/", [HomeController::class,"index"]);
 
