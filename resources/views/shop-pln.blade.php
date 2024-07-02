@@ -121,6 +121,11 @@
                             </div>
 
                             <div class="container bg-white mb-4 rounded py-4">
+                                <h5 class="mb-4">Voucher yang Dipilih</h5>
+                                <input class="form-control" type="text" placeholder="" readonly>
+                            </div>
+
+                            <div class="container bg-white mb-4 rounded py-4">
                                 <h5 class="mb-4">Metode Pembayaran</h5>
                                 <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
                                     <img class="qris" src="{!! URL::asset('/img/quick-response-code-indonesia-standard-qris-seeklogo-2 1.png')!!}" alt="">
@@ -140,7 +145,7 @@
                                     <h5 class="mb-4">Total </h5>
                                     <span >Rp 0</span>
                                 </div>
-                                <a href="{{ ('/shop-detail/invoice') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
+                                <a href="{{ ('/shop-detail/invoice-pln') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
                             </div>
                         </div>
                     </div>
@@ -215,19 +220,19 @@
                 <div class="modal-body d-flex justify-content-center">
                     <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4">
                         <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="img/discount.png" alt="">
+                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
                             <span>Diskon 20 Ribu</span>
                         </button>
                         <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="img/discount.png" alt="">
+                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
                             <span>Diskon 20 Ribu</span>
                         </button>
                         <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="img/discount.png" alt="">
+                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
                             <span>Diskon 20 Ribu</span>
                         </button>
                         <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="img/discount.png" alt="">
+                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
                             <span>Diskon 20 Ribu</span>
                         </button>
                     </div>

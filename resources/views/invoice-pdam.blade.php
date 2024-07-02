@@ -3,14 +3,15 @@
     <div class="container profile bg-white py-5 rounded-3 shadow ">
         <div class="container bg-white py-1 my-5 invoice">
             <div class="typography-invoice py-1 my-2">
-                <h5 class="title-invoice py-3 my-2">INVOICE PULSA</h5>
+                <h5 class="title-invoice py-3 my-2">TAGIHAN PDAM</h5>
                 <div class="row">
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
                         <span class="name">Kode Transaksi</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">{{ $invoice->invoice_no }}</span>
+                        {{-- <span class="name">{{ $invoice->invoice_no }}</span> --}}
+                        <span class="name">PDAMPDAM</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
@@ -18,7 +19,8 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                        <span class="name">{{ \Carbon\Carbon::parse($invoice->created_at)->format('d-m-Y') }}</span>
+                        {{-- <span class="name">{{ \Carbon\Carbon::parse($invoice->created_at)->format('d-m-Y') }}</span> --}}
+                        <span class="name">12-0-22</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
@@ -34,31 +36,42 @@
 
         <div class="container bg-white py-1 my-5 invoice">
             <div class="typography-invoice py-1 my-2">
-                <h5 class="title-invoice py-3 my-2">Detail Product</h5>
-                <img class="avatar" src="{!! URL::asset($invoice->provider_logo)!!}" alt="">
+                <h5 class="title-invoice py-3 my-2">Detail Payment</h5>
+                {{-- <img class="avatar" src="{!! URL::asset($invoice->provider_logo)!!}" alt=""> --}}
+                <img class="avatar" src="{!! URL::asset('/img/pln.png')!!}" alt="">
                 <div class="row">
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
                         <span class="name">Product</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Pulsa : {{ $invoice->provider_name }}</span>
+                        {{-- <span class="name">Pulsa : {{ $invoice->provider_name }}</span> --}}
+                        <span class="name">PDAM</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Phone</span>
+                        <span class="name">Nomor Meteran</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                        <span class="name">{{ $invoice->nomor_telp }}</span>
-                    </div>
-
-                    <div class="description col-sm-6 col-lg-6 col-xl-6">
-                        <span class="name">Nominal</span>
+                        <span class="name">882739</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name">Rp {{ number_format($invoice->nominal_pulsa,0,',','.') }}</span>
+                        <span class="name">Alamat</span>
+                    </div>
+
+                    <div class="description col-sm-6 col-lg-6 col-xl-6"> 
+                        <span class="name">Kedung Sari</span>
+                    </div>
+
+                    <div class="description col-sm-6 col-lg-6 col-xl-6">
+                        <span class="name">Periode</span>
+                    </div>
+
+                    <div class="description col-sm-6 col-lg-6 col-xl-6">    
+                        {{-- <span class="name">Rp {{ number_format($invoice->nominal_pulsa,0,',','.') }}</span> --}}
+                        <span class="name">Januari 2024</span>
                     </div>
                 </div>
             </div>
@@ -74,7 +87,8 @@
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
                         <span class="name">
-                            @php
+                            Proses
+                            {{-- @php
                                 $status_desc = "Baru";
                                 if($invoice->invoice_status == 2){
                                     $status_desc = "Lunas";
@@ -82,7 +96,7 @@
                                     $status_desc = "Cancel";
                                 }
                             @endphp
-                            {{ $status_desc }}
+                            {{ $status_desc }} --}}
                         </span>
                     </div>
 
@@ -95,7 +109,7 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
-                        <span class="name">Pesanan Oleh</span>
+                        <span class="name">Tagihan Atas Nama</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
@@ -105,7 +119,8 @@
                         <span class="name fw-bold">Total Payment</span>
                     </div>
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                        <span class="name fw-bold">Rp {{ number_format($invoice->invoice_total,0,',','.') }}</span>
+                        {{-- <span class="name fw-bold">Rp {{ number_format($invoice->invoice_total,0,',','.') }}</span> --}}
+                        <span class="name fw-bold">Rp 0000</span>
                     </div>
                 </div>
             </div>

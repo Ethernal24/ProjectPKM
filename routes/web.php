@@ -9,6 +9,8 @@ use App\Http\Controllers\Frontend\CoupunController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HistoryController;
 use App\Http\Controllers\Frontend\InvoiceController;
+use App\Http\Controllers\Frontend\InvoicePLNController;
+use App\Http\Controllers\Frontend\InvoicePDAMController;
 use App\Http\Controllers\Frontend\ShopPLNController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\ShopPDAMController;
@@ -36,6 +38,9 @@ Route::get("/profile/setting", [UserController::class,"index"]);
 Route::get("/profile/voucher", [CoupunController::class,"index"]);
 Route::get("/profile/history", [HistoryController::class,"index"]);
 Route::get("/shop-detail/invoice", [InvoiceController::class,"detail"]);
+Route::get("/shop-detail/invoice-pln", [InvoicePLNController::class,"index"]);
+Route::get("/shop-detail/invoice-pdam", [InvoicePDAMController::class,"index"]);
+
 Route::get("/profile/history/invoice", [InvoiceController::class,"index"]);
 Route::get("/shop/pdam", [ShopPDAMController::class,"index"]);
 Route::get("/shop/pln", [ShopPLNController::class,"index"]);
