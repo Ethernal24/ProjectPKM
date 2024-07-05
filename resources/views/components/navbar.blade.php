@@ -70,3 +70,55 @@
     </div>
 </div>
 <!-- Modal Search End -->
+
+<!-- Modal Change Bio Email -->
+<div class="modal fade" id="ChangeEmail" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+            <form action="" method="POST">
+                <div class="modal-header d-flex justify-content-center">
+                    <div class="modal-title">Change Email</div>
+                    <button type="button" class="btn-close p-3" data-bs-dismiss="modal" aria-label="Close"></button>  
+                </div>
+
+                <div class="modal-body d-flex align-items-center">
+                    <div class="form-group w-100">
+                        <label class="mb-2">Email</label>
+                        <input class="form-control" type="text" name="email" value="{{ Auth::user()->email }}">
+                    </div>
+                </div>
+                    
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+                    <input type="submit" name="Update_pengguna" class="btn btn-primary" value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- Modal Change Bio Name --}}
+<div class="modal fade" id="ChangeName" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-2">
+            <form action="" method="POST">
+                <div class="modal-header d-flex justify-content-center">
+                    <div class="modal-title">Change Name</div>
+                    <button type="button" class="btn-close p-3" data-bs-dismiss="modal" aria-label="Close"></button>  
+                </div>
+
+                <div class="modal-body d-flex align-items-center">
+                    <div class="form-group w-100">
+                        <label class="mb-2">Name</label>
+                        <input class="form-control" type="text" name="name" value="{{ Auth::user()->name }}">
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+                    <input type="submit" name="Update_pengguna" class="btn btn-primary" value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Search End -->

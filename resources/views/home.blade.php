@@ -75,8 +75,6 @@
     
                             </ul>
                         @endauth
-
-        
                     </div>
                 </div>
                 <!-- Products Tab Content -->

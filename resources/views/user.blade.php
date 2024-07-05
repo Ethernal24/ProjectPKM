@@ -16,17 +16,19 @@
             <div class="description">
                 <span class="name">Name</span>
                 <span class="name">{{ Auth::user()->name }}</span>
-                <button class="btn btn-primary px-3">Change</button>
+                <button data-bs-toggle="modal" data-bs-target="#ChangeName" class="btn btn-primary px-3">Change</button>
             </div>
             <h5 class="bio-title">Contact</h5>
             <div class="description">
                 <span class="name">Email</span>
                 <span class="name">{{ Auth::user()->email }}</span>
-                <button class="btn btn-primary px-3">Change</button>
+                <button data-bs-toggle="modal" data-bs-target="#ChangeEmail" class="btn btn-primary px-3">Change</button>
             </div>
         </div>
     </x-sidemenu>
 </x-layout>
+
+
 
 <script>
     document.getElementById('imageInput').addEventListener('change', function() {
