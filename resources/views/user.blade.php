@@ -13,17 +13,6 @@
                 <span class="name">Gilbert Giovanni</span>
                 <button class="btn btn-primary px-3">Change</button>
             </div>
-            <div class="description">
-                <span class="name">Date of birth</span>
-                <span class="name">24 April 2003</span>
-                <button class="btn btn-primary px-3">Change</button>
-            </div>
-            <div class="description">
-                <span class="name">Gender</span>
-                <span class="name">Male</span>
-                <button class="btn btn-primary px-3">Change</button>
-            </div>
-
             <h5 class="bio-title">Contact</h5>
             <div class="description">
                 <span class="name">Email</span>
