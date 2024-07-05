@@ -30,10 +30,14 @@ Route::get("/", [HomeController::class,"index"]);
 Route::get("/contact", [ContactController::class,"index"]);
 Route::get("/shop-detail", [ShopDetailController::class,"index"]);
 Route::post("/shop-detail", [ShopDetailController::class, "store"]); 
-Route::get("/login", [LoginController::class,"index"]);
-Route::get("/register", [RegisterController::class,"index"])->name('index');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 // Route::get("/register", [RegisterController::class,"store"])->name('index.store');
 Route::get("/profile", [UserController::class,"index"]);
+Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register.form');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::get("/profile/setting", [UserController::class,"index"]);
 Route::get("/profile/voucher", [CoupunController::class,"index"]);
 Route::get("/profile/history", [HistoryController::class,"index"]);
