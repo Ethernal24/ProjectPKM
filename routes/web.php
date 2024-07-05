@@ -41,6 +41,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get("/profile/setting", [UserController::class,"index"]);
 Route::get("/profile/voucher", [CoupunController::class,"index"]);
 Route::get("/profile/history", [HistoryController::class,"index"]);
+Route::post('upload-image', [UserController::class, 'uploadImage'])->name('user.image.upload');
 Route::get("/shop-detail/invoice", [InvoiceController::class,"detail"]);
 Route::get("/shop-detail/invoice-pln", [InvoicePLNController::class,"index"]);
 Route::get("/shop-detail/invoice-pdam", [InvoicePDAMController::class,"index"]);

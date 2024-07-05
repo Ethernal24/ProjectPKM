@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2024 at 03:25 AM
+-- Generation Time: Jul 05, 2024 at 10:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -256,9 +256,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('IpHZERMbxmYe24Op1Lt4bDGjLZ9B0NSBu3CRsMAK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQXpKbUNIVTJNdG90QkVsdldwQ09PckdYZTZQdWZhTlJMeWFadXRxRCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1720141379),
-('MdCoMrx6vY0TsunCK7hlNtx5ix4zzKxYsMr1WD8m', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQm9WV1lwV2Y2Y2FWNzZNTzVYT1dwbEZ1cW1ZekNsUnVOcWtjaEVjdCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1720142235),
-('x4I2Usi38xriAdn0nIH5DtwCWAucPdib9RKFBUrB', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidnNiUGw4TkJUb1ZyWTNSaU1uV2RWdlZZU1FDVThNQWtpR2RMajNxUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWdpc3RlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1720140896);
+('rUJBZe6L16a5gbqxT7Bb3909GLVpKwr7aGfNlNK0', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMkJ4MU92SW9Oek9NYUIxdkZLSlFzUllBeVI0dnNJRGtDUnc0VXVjaiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1720168341);
 
 -- --------------------------------------------------------
 
@@ -363,17 +361,21 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `Image` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ayam', 'babi12@gmail.com', NULL, '123456', NULL, NULL, NULL),
-(2, '$2y$12$q905N23jptdnPLb1xnfQTur.FdQtRZwa2YEX5AEwxgQpys0JV6t0y', '$2y$12$B4zxTgRltbZbSBaIES/GK.LiuF7e65cXb7lpOV.FlzUD8GjsGHiaq', NULL, '$2y$12$l5/aH1bTVc3MHrSEY5n28uF8zf2dCbx/PBbBzenMH98g59boyzTKe', NULL, '2024-07-04 08:25:34', '2024-07-04 08:25:34'),
-(3, '$2y$12$tq.Udl4JiF61tTQqmZ7rJeWRC5WHUbEdJho2IoGAhLhjkvaeTLgKC', '$2y$12$wcxAilVGJVvliFEExaAkNO1MYiMIRSdgHfeismTj6xOUf8g16RKpq', NULL, '$2y$12$WgqmBoD6h6YWC8f2JMEWzOauRSMtFbqoH/VrodJ5zWKQvmD2nl0EW', NULL, '2024-07-04 18:02:59', '2024-07-04 18:02:59');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `Image`) VALUES
+(1, 'Ayam12', 'babi12@gmail.com', NULL, '123456', NULL, NULL, NULL, '1720168341.jpg'),
+(2, '$2y$12$q905N23jptdnPLb1xnfQTur.FdQtRZwa2YEX5AEwxgQpys0JV6t0y', '$2y$12$B4zxTgRltbZbSBaIES/GK.LiuF7e65cXb7lpOV.FlzUD8GjsGHiaq', NULL, '$2y$12$l5/aH1bTVc3MHrSEY5n28uF8zf2dCbx/PBbBzenMH98g59boyzTKe', NULL, '2024-07-04 08:25:34', '2024-07-04 08:25:34', NULL),
+(3, '$2y$12$tq.Udl4JiF61tTQqmZ7rJeWRC5WHUbEdJho2IoGAhLhjkvaeTLgKC', '$2y$12$wcxAilVGJVvliFEExaAkNO1MYiMIRSdgHfeismTj6xOUf8g16RKpq', NULL, '$2y$12$WgqmBoD6h6YWC8f2JMEWzOauRSMtFbqoH/VrodJ5zWKQvmD2nl0EW', NULL, '2024-07-04 18:02:59', '2024-07-04 18:02:59', NULL),
+(4, '$2y$12$ddq97TDhnD5K8ZelbnHFA.jICO6X6EXETq7LUoDAyoyQfvqRgpi7K', '$2y$12$XgOqLmE1HRsi0C9IT8dJ4OGWSdBaGTcT3mtmBoXB0V1oSloOQjeta', NULL, '$2y$12$hyTPDcrelNK.OYdMln4EjeB5B.FmLU1QQktGqH9uEJayzRgdbBXjq', NULL, '2024-07-04 18:26:29', '2024-07-04 18:26:29', NULL),
+(5, '$2y$12$CIIoZM3hSVekkIdrrQCkXOwHRP4vWUP9YV7Il/cC0AAjcc7UlKW7S', '$2y$12$//RE/MBXIzqGAqsTse5PEu2AnqEBBjwba5yVZ/ESFFPyS/PLTP7am', NULL, '$2y$12$ryhHT2AoDZovK5tmjeYk0OWDOR4wn/Glxb7n3udsRTNfRpZoywkqG', NULL, '2024-07-04 18:44:36', '2024-07-04 18:44:36', NULL),
+(6, '$2y$12$gS6w7hlweEbxli4/cdl0MOL1aig8T8ohfpawpsk/.lmQOprX.6Fvu', '$2y$12$W9BBB2K5OoF7QGPkp8aMousiSqe6ELtN9Y6au7nFot5lm2z2bHmP2', NULL, '$2y$12$tkI0b6ugD2jA/8BJ4iRGn.k87RwydgzAcDT.s846.vFf46xMCazDC', NULL, '2024-07-04 21:27:26', '2024-07-04 21:27:26', NULL);
 
 --
 -- Indexes for dumped tables
@@ -548,7 +550,7 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
