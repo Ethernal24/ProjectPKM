@@ -42,6 +42,8 @@ Route::get("/profile/setting", [UserController::class,"index"]);
 Route::get("/profile/voucher", [CoupunController::class,"index"]);
 Route::get("/profile/history", [HistoryController::class,"index"]);
 Route::post('upload-image', [UserController::class, 'uploadImage'])->name('user.image.upload');
+Route::post('/profile/setting/update/name', [UserController::class, 'updateName'])->name('user.update.name');
+Route::post('/profile/setting/update/email', [UserController::class, 'updateEmail'])->name('user.update.email');
 Route::get("/shop-detail/invoice", [InvoiceController::class,"detail"]);
 Route::get("/shop-detail/invoice-pln", [InvoicePLNController::class,"index"]);
 Route::get("/shop-detail/invoice-pdam", [InvoicePDAMController::class,"index"]);
