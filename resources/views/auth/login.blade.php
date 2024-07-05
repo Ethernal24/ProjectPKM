@@ -6,15 +6,15 @@
             <h1 class="next">Shop</h1>
             </a>
         </div>
-        <div class="container px-0 konten ">
-            <h2 class="login-title">Login</h2>
-            @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
+        <form method="POST" action="{{ route('login') }}">
+            <div class="container px-0 konten ">
+                <h2 class="login-title">Login</h2>
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                    @csrf
                 <div class="input-group d-flex mx-auto w-50">
                     <h5 class="title-email">E-mail</h5>
                     <div class="input-group d-flex mx-auto">
@@ -39,7 +39,7 @@
                     <span>Don't have account?</span>
                     <a href="{{ url('/register') }}">Register Now</a>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </header>
 </x-loginlayout>

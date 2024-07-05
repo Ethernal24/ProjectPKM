@@ -32,9 +32,19 @@
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search bs-primary"></i></button>
-                    <a href="{{url( '/login') }}" class="icons my-auto">
-                        <i class="fa fa-user fa-2x"></i>
+                    @auth
+                    <a href="{{url( '/profile') }}" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4">
+                        <i class="fas fa-user bs-primary"></i>
                     </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"><i class="fas fa-right-from-bracket"></i></button>
+                    </form>
+                    @endauth
+
+                    @guest
+                    <a class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" href="{{ route('login') }}"><i class="fas fa-right-to-bracket bs-primary"></i></a>
+                    @endguest
                 </div>
             </div>
         </nav>

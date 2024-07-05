@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -15,24 +17,24 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
 
-    $email = $request->input('email');
-    $password = $request->input('password');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-    $user = DB::table('users')->where('email', $email)->first();
+        $user = DB::table('users')->where('email', $email)->first();
 
-    
-    if ($user && $password === $user->password) {
-        Auth::loginUsingId($user->id);
-        return redirect('/')->with('success', 'Login successful!');
-    }
 
-    return back()->with('error', 'Invalid email or password.');
+        if ($user && $password === $user->password) {
+            Auth::loginUsingId($user->id);
+            return redirect('/')->with('success', 'Login successful!');
+        }
+
+        return back()->with('error', 'Invalid email or password.');
     }
     public function logout(Request $request)
     {

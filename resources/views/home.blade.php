@@ -1,8 +1,7 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
-
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">ECOSHOP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +42,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> --}}
     <!-- End Navbar -->
 
     <!-- Hero Section -->
@@ -116,18 +115,18 @@
                                         <span class="text-dark" style="width: 130px;">Pulsa</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-link text-dark">Logout</button>
                                     </form>
-                                </li>
+                                </li> --}}
                             </ul>
                         @endauth
 
-                        @guest
+                        {{-- @guest
                             <p>Please <a href="{{ route('login') }}">log in</a> to view products.</p>
-                        @endguest
+                        @endguest --}}
                     </div>
                 </div>
                 <!-- Products Tab Content -->
