@@ -56,6 +56,7 @@
         <!-- Template Javascript -->
         <script src="{!! URL::asset('js/main.js')!!}"></script>
         <script src="{!! URL::asset('js/datacheck.js')!!}"></script>
+        <script src="{!! URL::asset('js/datacheck-pln.js')!!}"></script>
         <script src="{!! URL::asset('js/invoicevalidation.js')!!}"></script>
         <x-footer></x-footer>
 

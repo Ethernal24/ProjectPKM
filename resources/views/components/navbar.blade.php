@@ -32,9 +32,19 @@
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search bs-primary"></i></button>
-                    <a href="{{url( '/login') }}" class="icons my-auto">
-                        <i class="fa fa-user fa-2x"></i>
+                    @auth
+                    <a href="{{url( '/profile') }}" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4">
+                        <i class="fas fa-user bs-primary"></i>
                     </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"><i class="fas fa-right-from-bracket"></i></button>
+                    </form>
+                    @endauth
+
+                    @guest
+                    <a class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" href="{{ route('login') }}"><i class="fas fa-right-to-bracket bs-primary"></i></a>
+                    @endguest
                 </div>
             </div>
         </nav>
@@ -56,6 +66,61 @@
                     <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Search End -->
+
+<!-- Modal Change Bio Email -->
+<div class="modal fade" id="ChangeEmail" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+            @auth
+            <form action="{{ route('user.update.email') }}" method="POST">
+                @csrf
+                <div class="modal-header d-flex justify-content-center">
+                    <div class="modal-title">Change Email</div>
+                    <button type="button" class="btn-close p-3" data-bs-dismiss="modal" aria-label="Close"></button>  
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="form-group w-100">
+                        <label class="mb-2">Email</label>
+                        <input class="form-control" type="email" name="email" value="{{ Auth::user()->email }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-primary" value="Update">
+                </div>
+            </form>
+            @endauth
+        </div>
+    </div>
+</div>
+
+<!-- Modal Change Name -->
+<div class="modal fade" id="ChangeName" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-2">
+            @auth
+            <form action="{{ route('user.update.name') }}" method="POST">
+                @csrf
+                <div class="modal-header d-flex justify-content-center">
+                    <div class="modal-title">Change Name</div>
+                    <button type="button" class="btn-close p-3" data-bs-dismiss="modal" aria-label="Close"></button>  
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="form-group w-100">
+                        <label class="mb-2">Name</label>
+                        <input class="form-control" type="text" name="name" value="{{ Auth::user()->name }}" required>
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-primary" value="Update">
+                </div>
+            </form>
+            @endauth
         </div>
     </div>
 </div>

@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\DB;
 class InvoicePLNController extends Controller
 {
     public function index(){
-        return view("invoice-pln",['title' => 'Web Top up | PLN']);
+        return view("invoice-pln",['title' => 'Web Top up | Invoice PLN']);
     }
 }

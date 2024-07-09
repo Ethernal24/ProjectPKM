@@ -177,8 +177,7 @@
                                                 </a>
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">PLN</div>
-                                            <div class="p
-                                            -4 border border-secondary border-top-0 rounded-bottom">
+                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>PLN Prabayar</h4>
                                             </div>
                                         </div>
