@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index(){
-        return view("user",['title' => 'Web Top up | Profile']);
+    public function index()
+    {
+        return view("user", ['title' => 'Web Top up | Profile']);
     }
     public function uploadImage(Request $request)
     {
@@ -25,7 +26,7 @@ class UserController extends Controller
             return back()->withErrors(['user' => 'User not authenticated']);
         }
 
-        $imageName = time().'.'.$request->image->extension();  
+        $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
 
         if ($user->image) {
@@ -40,5 +41,43 @@ class UserController extends Controller
         }
 
         return back()->with('success', 'Image uploaded successfully.');
+    }
+
+    public function updateName(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return back()->withErrors(['user' => 'User not authenticated']);
+        }
+
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['name' => $request->name]);
+
+        return back()->with('success', 'Name updated successfully.');
+    }
+
+    public function updateEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
+        ]);
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return back()->withErrors(['user' => 'User not authenticated']);
+        }
+
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['email' => $request->email]);
+
+        return back()->with('success', 'Email updated successfully.');
     }
 }

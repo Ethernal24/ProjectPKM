@@ -1,3 +1,9 @@
+@if($errors->any())
+<script>
+    alert('{{$errors->first()}}') 
+</script>
+@endif
+
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
     <!-- Single Page Header start -->

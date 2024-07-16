@@ -150,5 +150,8 @@
                 </div> 
             </div>
         </div>
+        <div class="container bg-white mb-4 rounded py-4">
+            <button type="submit" href="{{ ('#') }}"  class="btn btn-danger border-0 border-secondary py-2 px-2 rounded text-white justify-content-center  w-100">CANCEL</button>
+        </div>
     </div>
 </x-layout>
