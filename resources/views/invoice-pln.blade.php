@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                        <span class="name">882739</span>
+                        <span class="name">{{ $invoice->no_pln_ui }}</span>
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">
@@ -63,7 +63,7 @@
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
                         {{-- <span class="name">Rp {{ number_format($invoice->nominal_pulsa,0,',','.') }}</span> --}}
-                        <span class="name">Rp 10000</span>
+                        <span class="name">Rp {{ number_format($invoice->nominal_pln,0,',','.') }}</span>
                     </div>
 
                     {{-- Kalau Top up PLN kode token baru tergenerate kalau sudah sukses transaksi --}}
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="description col-sm-6 col-lg-6 col-xl-6 hidden" id="tokenPLN">    
-                        <span class="name fw-bold">2d41zd2</span>
+                        <span class="name fw-bold">{{ $invoice->token_pln_kode }}</span>
                     </div>
                     {{-- end of Top up PLN --}}
                 </div>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="description col-sm-6 col-lg-6 col-xl-6">    
                         {{-- <span class="name fw-bold">Rp {{ number_format($invoice->invoice_total,0,',','.') }}</span> --}}
-                        <span class="name fw-bold">Rp 0000</span>
+                        <span class="name fw-bold">Rp {{ number_format($invoice->invoice_total,0,',','.') }}</span>
                     </div>
                 </div>
             </div>
@@ -151,6 +151,9 @@
                     <div class="d-flex justify-content-center p-3 fw-bold">Scan Now</div>  
                 </div> 
             </div>
+        </div>
+        <div class="container bg-white mb-4 rounded py-4">
+            <button type="submit" href="{{ ('#') }}"  class="btn btn-danger border-0 border-secondary py-2 px-2 rounded text-white justify-content-center  w-100">CANCEL</button>
         </div>
     </div>
 </x-layout>

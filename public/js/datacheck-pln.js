@@ -15,11 +15,11 @@ document.getElementById('noPLN-Form').addEventListener('submit', function(event)
     })
     .then(response => response.json())
     .then(data => {
-        // console.log(data); // Debug: check data response from server
+        console.log(data);
         if (data.valid) {
             dataDetail.classList.remove('hidden');
             errorMessage.classList.add('hidden');
-            document.getElementById('noPLN-ID').value = data.id;
+            document.getElementById('noPLN-ID').value = data.list_no_pln_id;
         } else {
             errorMessage.classList.remove('hidden');
             dataDetail.classList.add('hidden');

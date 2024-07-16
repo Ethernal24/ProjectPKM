@@ -31,11 +31,26 @@ class ShopPLNController extends Controller
         return view("shop-pln",$data);
     }
 
+    // public function cek_no_pln(Request $request){
+    //     $no_meteran_pln = $request->input('m_list_no_pln');
+    //     // Log::info('Checking PLN number: ' . $no_meteran_pln);
+    //     $exists = DB::table('m_list_no_pln')->where('no_pln', $no_meteran_pln)->exists();
+
+    //     return response()->json(['valid' => $exists]);
+    // }
+
     public function cek_no_pln(Request $request){
         $no_meteran_pln = $request->input('m_list_no_pln');
         // Log::info('Checking PLN number: ' . $no_meteran_pln);
-        $exists = DB::table('m_list_no_pln')->where('no_pln', $no_meteran_pln)->exists();
-
-        return response()->json(['valid' => $exists]);
+        
+        // Mengambil list_no_pln_id dan memeriksa keberadaannya
+        $pln_data = DB::table('m_list_no_pln')->select('list_no_pln_id')->where('no_pln', $no_meteran_pln)->first();
+    
+        $exists = !empty($pln_data); // Cek keberadaan data
+        
+        return response()->json(['valid' => $exists, 'list_no_pln_id' => $pln_data ? $pln_data->list_no_pln_id : null]);
     }
+    
+
+    
 }

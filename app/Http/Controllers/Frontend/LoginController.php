@@ -28,8 +28,13 @@ class LoginController extends Controller
 
         $user = DB::table('users')->where('email', $email)->first();
 
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ];
 
-        if ($user && $password === $user->password) {
+        if(Auth::attempt($credentials)){
+        // if ($user && $password === $user->password) {
             Auth::loginUsingId($user->id);
             return redirect('/')->with('success', 'Login successful!');
         }

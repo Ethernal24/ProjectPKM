@@ -1,3 +1,9 @@
+@if($errors->any())
+<script>
+    alert('{{$errors->first()}}') 
+</script>
+@endif
+
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -97,52 +103,57 @@
                                     <input class="form-control" type="number" readonly>
                                 </div>
                             </div> --}}
-                            <div class="col-lg-12">
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    
+                            <form action="{{ route('shop.invoice-pln') }}" method="post">
+                            {{-- <form action="{{ url("/shop/invoice-pln")}}" method="post"> --}}
+                                <div class="col-lg-12">
+
                                     <input type="hidden" name="invoice_type" value="1">
 
-                                    <h5>Nomer Meteran</h5>
-                                    <input class="form-control" id="noPLN-Detail-Input" type="number" readonly>
-                                    {{-- <input class="form-control" id="noPLN-ID" type="number" readonly> --}}
-                                </div>
-
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <h5 class="mb-4">Harga Token PLN</h5>
-                                    <input type="hidden" name="nominal_pln_id" id="hidden_nominal_pln_id" value="0">
-                                    <input class="form-control" type="text" placeholder="Pilih Jumlah" id="nominal_pln" readonly>
-                                </div>
-
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <h5 class="mb-4">Voucher yang Dipilih</h5>
-                                    <input class="form-control" type="hidden" id="voucher_id_real" name="voucher_id" value="0">
-                                    <input class="form-control" type="hidden" id="nominal_disc_real" value="0" readonly>
-                                    <input class="form-control" type="text" placeholder=""  id="nominal_disc" readonly>
-                                </div>
-
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <h5 class="mb-4">Metode Pembayaran</h5>
-                                    <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
-                                        <img class="qris" src="{!! URL::asset('/img/quick-response-code-indonesia-standard-qris-seeklogo-2 1.png')!!}" alt="">
-                                        <span id="total_pay">Rp 0</span>
-
+                                    @csrf
+                                    <div class="container bg-white mb-4 rounded py-4">
+                                        <h5>Nomer Meteran</h5>
+                                        <input class="form-control" name="no_pln_ui" id="noPLN-Detail-Input" type="number" readonly>
+                                        <input class="form-control" id="noPLN-ID" name="noPLN-ID" nmae="list_no_pln_id" type="hidden" readonly>
                                     </div>
-                                        
-                                </div>
-
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <h5 class="mb-4">Voucher</h5>
-                                    <button class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
-                                </div>
-
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <div class="justify-content-between d-flex w-100">
-                                        <h5 class="mb-4">Total </h5>
-                                        <span id="total_pay_fix">Rp 0</span>
+                                    
+                                    <div class="container bg-white mb-4 rounded py-4">
+                                        <h5 class="mb-4">Harga Token PLN</h5>
+                                        <input type="hidden" name="nominal_pln_id" id="hidden_nominal_pln_id" value="0">
+                                        <input class="form-control" type="hidden" name="" id="nominal_pln_real" value="0" readonly>
+                                        <input class="form-control" type="text" placeholder="Pilih Jumlah" id="nominal_pln" readonly>
                                     </div>
-                                    <a href="{{ ('/shop-detail/invoice-pln') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
+
+                                    <div class="container bg-white mb-4 rounded py-4">
+                                        <h5 class="mb-4">Voucher yang Dipilih</h5>
+                                        <input class="form-control" type="hidden" id="voucher_id_real" name="voucher_id" value="0">
+                                        <input class="form-control" type="hidden" id="nominal_disc_real" value="0" readonly>
+                                        <input class="form-control" type="text" placeholder=""  id="nominal_disc" readonly>
+                                    </div>
+
+                                    <div class="container bg-white mb-4 rounded py-4">
+                                        <h5 class="mb-4">Metode Pembayaran</h5>
+                                        <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
+                                            <img class="qris" src="{!! URL::asset('/img/quick-response-code-indonesia-standard-qris-seeklogo-2 1.png')!!}" alt="">
+                                            <span id="total_pay">Rp 0</span>
+
+                                        </div>
+                                            
+                                    </div>
+
+                                    <div class="container bg-white mb-4 rounded py-4">
+                                        <h5 class="mb-4">Voucher</h5>
+                                        <button type='button' class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
+                                    </div>
+
+                                    <div class="container bg-white mb-4 rounded py-4">
+                                        <div class="justify-content-between d-flex w-100">
+                                            <h5 class="mb-4">Total </h5>
+                                            <span id="total_pay_fix">Rp 0</span>
+                                        </div>
+                                        <button type='submit' class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</submit>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

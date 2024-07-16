@@ -46,7 +46,7 @@ Route::post('/profile/setting/update/name', [UserController::class, 'updateName'
 Route::post('/profile/setting/update/email', [UserController::class, 'updateEmail'])->name('user.update.email');
 
 Route::get("/shop-detail/invoice", [InvoiceController::class,"detail"]);
-Route::get("/shop-detail/invoice-pln", [InvoicePLNController::class,"index"]);
+Route::get("/shop/invoice-pln", [InvoicePLNController::class,"detailPLN"]);
 Route::get("/shop-detail/invoice-pdam", [InvoicePDAMController::class,"index"]);
 
 Route::get("/profile/history/invoice", [InvoiceController::class,"index"]);
@@ -55,3 +55,4 @@ Route::get("/shop/pln", [ShopPLNController::class,"index"]);
 Route::post("/shop/pln/check", [ShopPLNController::class,"cek_no_pln"]);
 
 Route::post("/shop-detail/invoice", [InvoiceController::class,"submit"])->name('shop-detail.invoice');
+Route::post("/shop/invoice-pln", [InvoicePLNController::class,"submit"])->name('shop.invoice-pln');

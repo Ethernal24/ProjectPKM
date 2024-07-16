@@ -21,8 +21,8 @@ class RegisterController extends Controller
 {
 
     $data = [
-        'email' => Hash::make($request->email),
-        'name' => Hash::make($request->name),
+        'email' => $request->email,
+        'name' => $request->name,
         'password' => Hash::make($request->password)
     ];
 
