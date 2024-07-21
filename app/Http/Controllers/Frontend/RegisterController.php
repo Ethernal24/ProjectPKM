@@ -40,25 +40,3 @@ class RegisterController extends Controller
 //     }
 
 // public function store(Request $request){
-
-$data = [
-    'email' => Hash::make($request->email),
-    'name' => Hash::make($request->name),
-    'password' => Hash::make($request->password)
-];
-
-
-User::create($data);
-
-    //     //create new user
-    //     $user = User::create([
-    //         'email' => $request -> email,
-    //         'name' => $request -> name,
-    //         'password' => Hash::make($request -> password),
-    //     ]);
-
-    //     auth() -> login($user);
-
-    //     return to_route('user.index');
-    // }
-// }

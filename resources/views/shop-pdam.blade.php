@@ -1,5 +1,12 @@
+@if($errors->any())
+<script>
+    alert('{{$errors->first()}}') 
+</script>
+@endif
+
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
         <div class="telkomsel-page d-flex position-relative mx-auto">
@@ -18,16 +25,17 @@
         <div class="container py-5">
             <div class="container bg-white my-4 py-2 rounded shadow">
                 {{-- Check Data Menggunakan JS bernama datacheck  --}}
-                <form id="dataForm" class="input-group w-75 mx-auto d-flex py-2 my-4">
-                    <input type="text" id="dataInput" class="form-control p-3" placeholder="Enter data">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                <form id="noPDAM-form" method="POST" action="{{ url('/shop/pdam/check') }}" class="input-group w-75 mx-auto d-flex py-2 my-4">
+                    @csrf
+                    <input type="text" id="noPDAM-input" class="form-control p-3" name="no_meteran_pdam" placeholder="Enter data">
+                    <button type="submit" name="submit"><i class="fa fa-search"></i></button>
                 </form>
 
-                <div id="errorMessage" class="hidden">
-                    <p class="d-flex justify-content-center">Nomor tidak ada, masukkan nomer yang valid</p>
+                <div id="errorMessagePdam" class="hidden">
+                    <p class="d-flex justify-content-center">Nomor PDAM tidak ada, masukkan nomer yang valid</p>
                 </div> 
             
-                <div class="row g-4 mb-5 py-4 px-5 mx-4 my-4 hidden" id="dataDetail" >
+                <div class="row g-4 mb-5 py-4 px-5 mx-4 my-4 hidden" id="noPDAM-Detail" >
                     <h4 class="nominal d-flex ">Data Anda</h4>
                     <div class="col-lg-12">
                         <div class="tab-content mb-5">
@@ -37,7 +45,8 @@
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name">1234567678</span>
+                                    <input class="name" id="noPDAM-Detail-Input" name="cust_pdam_no" readonly></input>
+                                    <input class="name" id="noPDAM-ID" name="cust_pdam_id" readonly></input>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
@@ -45,7 +54,7 @@
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                                    <span class="name">Manukan</span>
+                                    <input class="name" id="alamatPDAM" name="cust_pdam_alamat" readonly></input>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">
@@ -53,15 +62,15 @@
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name">April</span>
+                                    <span class="name" id="tagihanPDAM"name="tagihan_pdam_periode"></span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">
-                                    <span class="name fw-bold">Total Tagihan</span>
+                                    <span class="name fw-bold">Periode</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name fw-bold">Rp 150.000</span>
+                                    <span class="name fw-bold" id="periodePDAM" name= "tagihan_pdam_periode" ></span>
                                 </div>
 
                                 {{-- <div class="description py-5 justify-content-center">
@@ -227,4 +236,12 @@
             </div>
         </div>
     </div>
+
+
 </x-layout>
+
+<script>
+    document.getElementById('noPDAM-input').addEventListener('input', function() {
+        document.getElementById('noPDAM-Detail-Input').value = this.value;
+    });
+</script>

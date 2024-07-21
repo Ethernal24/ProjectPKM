@@ -113,7 +113,7 @@
                                     <div class="container bg-white mb-4 rounded py-4">
                                         <h5>Nomer Meteran</h5>
                                         <input class="form-control" name="no_pln_ui" id="noPLN-Detail-Input" type="number" readonly>
-                                        <input class="form-control" id="noPLN-ID" name="noPLN-ID" nmae="list_no_pln_id" type="hidden" readonly>
+                                        <input class="form-control" id="noPLN-ID" name="list_no_pln_id"  readonly>
                                     </div>
                                     
                                     <div class="container bg-white mb-4 rounded py-4">

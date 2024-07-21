@@ -9,17 +9,18 @@ use Illuminate\Support\Facades\Log;
 
 class ShopPLNController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         $nominal_plns = DB::select('select * from m_nominal_pln');
         $list_no_pln = DB::select('select * from m_list_no_pln');
         $stok_pln = DB::select('select * from m_token_pln');
         $nominal_vouchers = DB::select('select * from m_voucher as a left join m_nominal_voucher AS b on a.nominal_voucher_id = b.nominal_voucher_id where a.user_id = ? and a.is_redeemed = ?', [1, 0]);
-        
-        foreach($nominal_plns as $i => $nominal_pln){
-            if(collect($stok_pln)->where('nominal_pln_id', $nominal_pln->nominal_pln_id)->where('token_pln_status','=', 0)->count() > 0){
+
+        foreach ($nominal_plns as $i => $nominal_pln) {
+            if (collect($stok_pln)->where('nominal_pln_id', $nominal_pln->nominal_pln_id)->where('token_pln_status', '=', 0)->count() > 0) {
                 $nominal_plns[$i]->status_tersedia = 1;
-            }else{
+            } else {
                 $nominal_plns[$i]->status_tersedia = 0;
             }
         }
@@ -28,7 +29,7 @@ class ShopPLNController extends Controller
         $data['nominal_plns'] = $nominal_plns;
         $data['nominal_vouchers'] = $nominal_vouchers;
 
-        return view("shop-pln",$data);
+        return view("shop-pln", $data);
     }
 
     // public function cek_no_pln(Request $request){
@@ -39,18 +40,16 @@ class ShopPLNController extends Controller
     //     return response()->json(['valid' => $exists]);
     // }
 
-    public function cek_no_pln(Request $request){
+    public function cek_no_pln(Request $request)
+    {
         $no_meteran_pln = $request->input('m_list_no_pln');
         // Log::info('Checking PLN number: ' . $no_meteran_pln);
-        
+
         // Mengambil list_no_pln_id dan memeriksa keberadaannya
         $pln_data = DB::table('m_list_no_pln')->select('list_no_pln_id')->where('no_pln', $no_meteran_pln)->first();
-    
+
         $exists = !empty($pln_data); // Cek keberadaan data
-        
+
         return response()->json(['valid' => $exists, 'list_no_pln_id' => $pln_data ? $pln_data->list_no_pln_id : null]);
     }
-    
-
-    
 }

@@ -47,12 +47,15 @@ Route::post('/profile/setting/update/email', [UserController::class, 'updateEmai
 
 Route::get("/shop-detail/invoice", [InvoiceController::class, "detail"]);
 Route::get("/shop/invoice-pln", [InvoicePLNController::class, "detailPLN"]);
-Route::get("/shop-detail/invoice-pdam", [InvoicePDAMController::class, "index"]);
+Route::get("/shop/invoice-pdam", [InvoicePDAMController::class, "detailPDAM"]);
 
 Route::get("/profile/history/invoice", [InvoiceController::class, "index"]);
 Route::get("/shop/pdam", [ShopPDAMController::class, "index"]);
+Route::post("/shop/pdam/check", [ShopPDAMController::class, "cek_no_pdam"]);
+
 Route::get("/shop/pln", [ShopPLNController::class, "index"]);
 Route::post("/shop/pln/check", [ShopPLNController::class, "cek_no_pln"]);
 
 Route::post("/shop-detail/invoice", [InvoiceController::class, "submit"])->name('shop-detail.invoice');
 Route::post("/shop/invoice-pln", [InvoicePLNController::class, "submit"])->name('shop.invoice-pln');
+Route::post("/shop/invoice-pdam", [InvoicePDAMController::class, "submit"])->name('shop.invoice-pdam');

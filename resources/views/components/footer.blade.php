@@ -28,23 +28,36 @@
             <div class="col-lg-5 col-md-6">
                 <div class="footer-item">
                     <h4 class="text-light mb-3">About US</h4>
-                    <p class="mb-4">typesetting, remaining essentially unchanged. It was 
-                        popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
+                    <p class="mb-4">Merupakan Website Top UP untuk kebutuhan sehari-hari menggunakan voucher, seperti top up pulsa, pembayaran PLN dan juga
+                        Pembayaran PDAM.</p>
                 </div>
             </div>
+            @auth
             <div class="col-lg-2 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
                     <h4 class="text-light mb-3">Account</h4>
-                    <a class="btn-link" href="">My Account</a>
-                    <a class="btn-link" href="">Order History</a>
+                    <a class="btn-link" href="{{ ('/profile') }}">My Account</a>
+                    <a class="btn-link" href="{{ ('/profile/history') }}">Order History</a>
                 </div>
             </div>
+            @endauth
+
+            @guest
+            <div class="col-lg-2 col-md-6">
+                <div class="d-flex flex-column text-start footer-item">
+                    <h4 class="text-light mb-3">Account</h4>
+                    <a class="btn-link" href="{{ ('/login') }}">My Account</a>
+                    <a class="btn-link" href="{{ ('/login') }}">Order History</a>
+                </div>
+            </div>
+            @endguest
+
             <div class="col-lg-5 col-md-6">
                 <div class="footer-item">
                     <h4 class="text-light mb-3">Contact</h4>
-                    <p>Address: 1429 Netus Rd, NY 48247</p>
-                    <p>Email: Example@gmail.com</p>
-                    <p>Phone: +0123 4567 8910</p>
+                    <p>Address: Jl. Sutorejo Prima Utara II No.1, Kalisari, Kec. Mulyorejo, Surabaya, Jawa Timur 60112</p>
+                    <p>Email: ecoshop@gmail.com</p>
+                    <p>Phone: 089517999078</p>
                     <p>Payment Accepted</p>
                     <img src="{!! URL::asset('img/quick-response-code-indonesia-standard-qris-seeklogo-2-white.png ')!!}" class="img-fluid" alt="">
                 </div>
@@ -59,7 +72,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Ecoshop</a></span>
             </div>
         </div>
     </div>
