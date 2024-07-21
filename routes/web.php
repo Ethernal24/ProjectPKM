@@ -50,6 +50,7 @@ Route::get("/shop/invoice-pln", [InvoicePLNController::class, "detailPLN"]);
 Route::get("/shop/invoice-pdam", [InvoicePDAMController::class, "detailPDAM"]);
 
 Route::get("/profile/history/invoice", [InvoiceController::class, "index"]);
+
 Route::get("/shop/pdam", [ShopPDAMController::class, "index"]);
 Route::post("/shop/pdam/check", [ShopPDAMController::class, "cek_no_pdam"]);
 

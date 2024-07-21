@@ -27,14 +27,16 @@ class ShopPDAMController extends Controller
         Log::info('Checking PLN number: ' . $no_meteran_pdam);
 
         // Mengambil list_no_pln_id dan memeriksa keberadaannya
-        $pdam_data = DB::table('m_cust_pdam')->select('cust_pdam_id')->where('cust_pdam_no', $angka)->first();
+        $pdam_data = DB::table('m_cust_pdam')->select('cust_pdam_id')->where('cust_pdam_no', $no_meteran_pdam)->first();
 
         $exists = !empty($pdam_data); // Cek keberadaan data
 
-        if (!$exists) {
-            return response()->json(['valid' => $exists, 'cust_pdam_id' => $pdam_data ? $pdam_data->cust_pdam_id : null]);
-        }
-        return redirect()->route('showData', ['cust_pdam_id' => $pdam_data->cust_pdam_id]);
+        return response()->json(['valid' => $exists, 'cust_pdam_id' => $pdam_data ? $pdam_data->cust_pdam_id : null]);
+
+
+        // if (!$exists) {
+        //     return response()->json(['valid' => $exists, 'cust_pdam_id' => $pdam_data ? $pdam_data->cust_pdam_id : null]);
+        // }
     }
     // public function showData($cust_pdam_id)
     // {
