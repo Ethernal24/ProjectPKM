@@ -385,7 +385,7 @@
     }
 
     function set_total_pay(){
-        var nominal_real = $('#nominal_real').val();
+        const nominal_real = document.getElementById('tagihanPDAM').textContent;
         var nominal_disc_real = $('#nominal_disc_real').val();
         var total_pay = parseInt(nominal_real) - parseInt(nominal_disc_real);
         $('#total_pay').html("Rp " + rupiah(total_pay));

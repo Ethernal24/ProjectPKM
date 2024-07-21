@@ -35,7 +35,7 @@
                     <p class="d-flex justify-content-center">Nomor PDAM tidak ada, masukkan nomer yang valid</p>
                 </div> 
             
-                <div class="row g-4 mb-5 py-4 px-5 mx-4 my-4 hidden" id="noPDAM-Detail" >
+                <form class="row g-4 mb-5 py-4 px-5 mx-4 my-4 hidden" id="noPDAM-Detail" method="POST" action="{{ route('shop.invoice-pdam') }}" >
                     <h4 class="nominal d-flex ">Data Anda</h4>
                     <div class="col-lg-12">
                         <div class="tab-content mb-5">
@@ -45,58 +45,59 @@
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <input class="name" id="noPDAM-Detail-Input" name="cust_pdam_no" readonly></input>
-                                    <input class="name" id="noPDAM-ID" name="cust_pdam_id" readonly></input>
+                                    <span class="detil text-decoration-none border-0" id="noPDAM-Detail-Input" name="cust_pdam_no" readonly></span>
+                                    <span class="detil hidden" id="noPDAM-ID" name="cust_pdam_id">0</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name">Alamat</span>
+                                    <span class="detil">Alamat</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6"> 
-                                    <input class="name" id="alamatPDAM" name="cust_pdam_alamat" readonly></input>
+                                    <span class="detil" id="alamatPDAM" name="cust_pdam_alamat">-</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">
-                                    <span class="name">Periode</span>
+                                    <span class="detil">Periode</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name" id="tagihanPDAM"name="tagihan_pdam_periode"></span>
+                                    <span class="detil" id="periodePDAM"name="tagihan_pdam_periode">-</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">
-                                    <span class="name fw-bold">Periode</span>
+                                    <span class="detil fw-bold">Total</span>
                                 </div>
 
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name fw-bold" id="periodePDAM" name= "tagihan_pdam_periode" ></span>
+                                    <span class="detil fw-bold" id="tagihanPDAM" name= "tagihan_pdam_periode" >-</span>
                                 </div>
 
                                 {{-- <div class="description py-5 justify-content-center">
                                     <img src="{!! URL::asset('/img/qr-code.png')!!}" alt="" class="qr">
                                 </div> --}}
 
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <h5 class="mb-4">Voucher</h5>
-                                    <button class="btn btn-primary text-white justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
-                                </div>
-
+                                
+                                <h5 class="my-4 col-sm-12 col-lg-12 col-xl-12 nominal fw-bold">Voucher</h5>
                                 <div class="description col-sm-6 col-lg-6 col-xl-6">
                                     <span class="name fw-bold">Voucher yang Dipilih :</span>
                                 </div>
 
-                                <div class="description col-sm-6 col-lg-6 col-xl-6">    
-                                    <span class="name fw-bold">Rp 20.000</span>
+                                <div class="description col-sm-6 col-lg-6 col-xl-6">
+                                    <span class="detil fw-bold" type="hidden" id="voucher_id_real" name="voucher_id"></span>
+                                    <span class="detil fw-bold" type="hidden" id="nominal_disc_real"></span>
+                                    <span class="detil fw-bold" type="text" id="nominal_disc">0</span>
+                                    {{-- <span class="name fw-bold" id="nominal_disc_real" >0</span> --}}
                                 </div>
-    
-                                <div class="container bg-white mb-4 rounded py-4">
-                                    <div class="justify-content-between d-flex w-100">
-                                        <h5 class="mb-4">Total Setelah Diskon : </h5>
-                                        <span >Rp 130.000</span>
-                                    </div>
-                                    <a href="{{ ('/shop-detail/invoice-pdam') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
+
+                                <button class="btn btn-primary text-white justify-content-center w-100" type="button" data-bs-toggle="modal" data-bs-target="#voucher">Choose Voucher</button>
+
+
+                                <div class="justify-content-between d-flex w-100">
+                                    <h5 class="my-4 name fw-bold">Total Setelah Diskon : </h5>
+                                    <span class="my-4 name fw-bold justify-content-end" id="total_pay_fix">0</span>
                                 </div>
+                                <button type="submit" class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
                             </div>    
 
                             {{-- <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
@@ -145,7 +146,7 @@
                             </div> --}}
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <h1 class="fw-bold mb-0">Other Product</h1>
             <div class="vesitable">
@@ -214,23 +215,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex justify-content-center">
-                    <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4">
-                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
+                    <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4" data-bs-dismiss="modal">
+                        @foreach ($nominal_vouchers as $nominal_voucher)
+                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4" onclick="set_nominal_voucher('{{ $nominal_voucher->nominal_disc }}' ,'{{ $nominal_voucher->voucher_id }}')">
                             <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
-                            <span>Diskon 20 Ribu</span>
+                            <span>Diskon {{ $nominal_voucher->nominal_disc /1000 }} Ribu</span>
                         </button>
-                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
-                            <span>Diskon 20 Ribu</span>
-                        </button>
-                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
-                            <span>Diskon 20 Ribu</span>
-                        </button>
-                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
-                            <img class="diskon" src="{!! URL::asset('/img/discount.png')!!}" alt="">
-                            <span>Diskon 20 Ribu</span>
-                        </button>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -241,6 +232,43 @@
 </x-layout>
 
 <script>
+    function set_nominal_voucher(nominal_disc, voucher_id){
+        var tagihan_pdam = $('#tagihanPDAM').text();
+        if(parseInt(nominal_disc) > parseInt(tagihan_pdam)){
+            console.log(tagihan_pdam)
+            console.log(nominal_disc)
+            iziToast.error({
+                position: 'topCenter',
+                title: 'GAGAL',
+                message: 'nominal voucher tidak boleh lebih besar dari nominal pdam'
+            });
+        }
+        else {
+            console.log(tagihan_pdam)
+            console.log(nominal_disc)
+            $('#nominal_disc').text(rupiah(nominal_disc));
+            // $('#nominal_disc_real').text(nominal_disc);
+            // $('#voucher_id_real').text(voucher_id);
+            set_total_pay();
+        }
+    }
+
+    function set_total_pay(){
+        var tagihan_pdam = $('#tagihanPDAM').text();
+        var nominal_disc_real = $('#nominal_disc').text();
+        console.log(tagihan_pdam)
+        console.log(nominal_disc_real)
+
+        var total_pay = parseInt(tagihan_pdam) - parseInt(nominal_disc_real);
+
+        $('#total_pay').html(rupiah(total_pay));
+        $('#total_pay_fix').html(rupiah(total_pay));
+    }
+
+    function rupiah(angka) {
+        return angka.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits:0 });
+    }
+
     document.getElementById('noPDAM-input').addEventListener('input', function() {
         document.getElementById('noPDAM-Detail-Input').value = this.value;
     });

@@ -12,12 +12,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view("user", ['title' => 'Web Top up | Profile']);
+        $data['imageprofile'] = DB::select('select * from users');
+        $data['title'] = 'Web Top up | Profile';
+        return view("user", $data);
     }
     public function uploadImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,JPG,PNG',
         ]);
 
         $user = Auth::user();

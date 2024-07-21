@@ -14,22 +14,19 @@ document.getElementById('noPDAM-form').addEventListener('submit', function (even
         body: JSON.stringify({ m_cust_pdam: inputData })
     }).then(response => response.json()).then(data => {
         console.log(data);
-        console.log(inputData);
-        console.log({ m_cust_pdam: inputData });
         if (data.valid) {
             dataDetail.classList.remove('hidden');
             errorMessage.classList.add('hidden');
-            document.getElementById('noPDAM-ID').value = data.cust_pdam_id;
-            document.getElementById('alamatPDAM').value = data.cust_pdam_alamat;
-            document.getElementById('periodePDAM').value = data.cust_pdam_id;
+            document.getElementById('noPDAM-ID').textContent = data.cust_pdam_id;
+            document.getElementById('noPDAM-Detail-Input').textContent = data.cust_pdam_no;
+            document.getElementById('alamatPDAM').textContent = data.cust_pdam_alamat;
+            document.getElementById('periodePDAM').textContent = data.cust_pdam_periode;
+            // const tagihan = Number(data.cust_pdam_total)
+            document.getElementById('tagihanPDAM').textContent = data.cust_pdam_total
         } else {
-            dataDetail.classList.remove('hidden');
-            errorMessage.classList.add('hidden');
-            document.getElementById('noPDAM-ID').value = data.cust_pdam_id;
-            // errorMessage.classList.remove('hidden');
-            // dataDetail.classList.add('hidden');
+            errorMessage.classList.remove('hidden');
+            dataDetail.classList.add('hidden');
         }
-        console.log(data.cust_pdam_id)
     }).catch(error => {
         console.error('Error:', error);
     });
